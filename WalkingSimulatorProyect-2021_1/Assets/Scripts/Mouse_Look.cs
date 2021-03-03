@@ -9,10 +9,11 @@ public class Mouse_Look : MonoBehaviour
 
     float xRotation = 0f;
     void Start()
-    {
+    
+     {
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
+     }
+    
     // Update is called once per frame
     void Update()
     {

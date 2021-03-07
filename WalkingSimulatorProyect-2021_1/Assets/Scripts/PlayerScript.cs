@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     bool isGrounded; // Reviza si esta en el suelo, y si es verdadero, entonces la velocidad no se acumulará en Y (Además determina si se puede saltar o no) 
     Vector3 velocity; // Velocidad que se le asigna al movimiento
 
-
+   	static public float bateria = 10f;
 
     private void Start()
     {
@@ -33,7 +33,12 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
-       
+       if (ContadorEncendidoLuz == 1)
+       bateria -= Time.deltaTime;
+
+       if (bateria <= 0)
+       luz.gameObject.SetActive(false);
+
 
 
 
@@ -77,7 +82,7 @@ public class PlayerScript : MonoBehaviour
     void ButtonLight()
         // Boton de la luz (Encender - Apagar) 
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && bateria > 0)
             {
             
 

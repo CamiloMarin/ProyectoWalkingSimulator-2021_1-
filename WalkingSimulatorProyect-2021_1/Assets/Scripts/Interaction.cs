@@ -34,9 +34,6 @@ public class Interaction : MonoBehaviour
         Obj1.transform.position = new Vector3(Obj2.transform.position.x, Obj1.transform.position.y, Obj2.transform.position.z);
         Obj2.transform.position = tempPosition;
 
-
-
-
     }
 
 
@@ -71,20 +68,16 @@ public class Interaction : MonoBehaviour
 
                     score = oldScore;
 
-                }
-                
-
-
-                if (Obj1.gameObject.layer == 2)
-                {
-                    // Setea las variables publicas de obj_0, Obj1 y Obj2 en nulas para que pueda registrar nuevos objetos con el raycast
-
                     Obj1 = null;
                     Obj_0_Parent = null;
                     Obj2 = null;
                     score -= 1;
 
                 }
+                
+
+
+                
             }
 
 

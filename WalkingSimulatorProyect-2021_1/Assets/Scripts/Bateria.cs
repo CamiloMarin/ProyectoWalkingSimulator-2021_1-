@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bateria : MonoBehaviour
 
 {
-	private float bateriaRecargada = 20f;
+	private float bateriaRecargada = 28f;
 
 
     private void OnTriggerEnter(Collider other)

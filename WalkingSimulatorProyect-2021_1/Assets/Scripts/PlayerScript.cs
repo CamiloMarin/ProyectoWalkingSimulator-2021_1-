@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     bool isGrounded; // Reviza si esta en el suelo, y si es verdadero, entonces la velocidad no se acumulará en Y (Además determina si se puede saltar o no) 
     Vector3 velocity; // Velocidad que se le asigna al movimiento
 
-   	static public float bateria = 10f;
+   	static public float bateria = 15f;
 
     private void Start()
     {

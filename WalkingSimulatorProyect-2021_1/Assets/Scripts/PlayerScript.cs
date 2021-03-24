@@ -17,11 +17,23 @@ public class PlayerScript : MonoBehaviour
     bool isGrounded; // Reviza si esta en el suelo, y si es verdadero, entonces la velocidad no se acumulará en Y (Además determina si se puede saltar o no) 
     Vector3 velocity; // Velocidad que se le asigna al movimiento
 
+    // variables de la zona de miedo de los monstruos
+    public Camera _camera; // variable de la camara 
+    public float _timerFear = 8.0f; // Tiempo maximo que el jugado puede permanecer en la zona de miedo
+    public float _timerFearReseter = 8.0f; // Tiempo que se designa para resetear el valor original del timerFear cuando el jugador sale de la zona y el contador todavia no ha llegado a cero
+    public bool _OnFear = false; // variable bool que reviza si está o no en la zona de miedo
+
+    // script interaction
+    public Interaction _interaction_script;
+    // gameobj que contiene el script de interaction 
+    public GameObject _interaction_Obj_SpotL;
+
+
    	static public float bateria = 15f;
 
     private void Start()
     {
-        
+        _OnFear = false;
     }
 
 
@@ -33,13 +45,38 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
+        /* if (_interaction_Obj_SpotL.activeSelf)
+        {
+            if(_interaction_script.Obj3_Monster_Collider == null)
+            {
+                _timerFear = _timerFearReseter;
+            }
+            else _timerFear = _timerFearReseter;
+        }
+        */
+
+        if(_interaction_script._If_Swap_Is_True == true)
+        {
+            _OnFear = false;
+            _interaction_script._If_Swap_Is_True = false;
+            _interaction_script._If_Swap_Is_True = false;
+        }
+
+
+        if (_OnFear == false)
+        {
+            _timerFear = _timerFearReseter;
+        }
+
+
+
        if (ContadorEncendidoLuz == 1)
        bateria -= Time.deltaTime;
 
        if (bateria <= 0)
        luz.gameObject.SetActive(false);
 
-
+       
 
 
 
@@ -99,5 +136,51 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag.Equals("colliderMonstruo"))
+        {
+            _ZonaDeMiedo();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("colliderMonstruo"))
+        {
+            _timerFear = _timerFearReseter;
+        }
+
+        _OnFear = false;
+
+    }
+
+    
+
+
+    public void _ZonaDeMiedo()
+    {
+        _OnFear = true;
+
+        if (_OnFear == true)
+        {
+            _timerFear -= Time.deltaTime;
+
+        }
+
+        if (_timerFear <= 0)
+        {
+            //lose 
+
+            Debug.Log("YA PERDI XD");
+
+           
+
+        }
+
+    }
+
 
 }

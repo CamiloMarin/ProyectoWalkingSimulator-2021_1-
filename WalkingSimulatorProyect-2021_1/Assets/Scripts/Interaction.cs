@@ -13,6 +13,7 @@ public class Interaction : MonoBehaviour
     public GameObject Obj3_Monster_Collider;
     public Vector3 tempPosition;
     public bool _If_Swap_Is_True = false;
+    public int contador_cambio_parejas = 0;
 
 
     // variables que sirven para cambiar los objetos una vez
@@ -37,6 +38,8 @@ public class Interaction : MonoBehaviour
         Obj1.transform.position = new Vector3(Obj2.transform.position.x, Obj1.transform.position.y, Obj2.transform.position.z);
         Obj2.transform.position = tempPosition;
         _If_Swap_Is_True = true;
+        contador_cambio_parejas += 1;
+
 
     }
 
@@ -93,7 +96,11 @@ public class Interaction : MonoBehaviour
         }
            
             
+        if (contador_cambio_parejas == 9)
+        {
+            Debug.Log("GANASTEEEEE :D");
 
+        }
 
 
             

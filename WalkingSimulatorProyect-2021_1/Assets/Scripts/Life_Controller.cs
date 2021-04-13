@@ -6,47 +6,37 @@ using UnityEngine.UI;
 
 public class Life_Controller : MonoBehaviour
 {
-    public PlayerScript _Player_Script;
-    public RawImage Life_bar;
-    float tiempo_Fear_Left;
-    float timer;
-    float localx;
-    float localy;
-    float localz;
-    Vector3 start;
-    Vector3 finish;
+    private Image imageController;
+    public float timer_fear_number;
+    public float max_timer_fear_number;
+    PlayerScript _playerScript;
 
-
-    void Start()
+    public void Start()
     {
-        Life_bar = GetComponent<RawImage>();
-        _Player_Script._timerFear = tiempo_Fear_Left;
-        tiempo_Fear_Left = timer;
-
-        localx = gameObject.transform.localScale.x;
-        localy = gameObject.transform.localScale.y;
-        localz = gameObject.transform.localScale.z;
-
-        start = new Vector3(localx, localy, localz);
-        finish = new Vector3(0, localy, localz);
-        
-      
+        imageController = GetComponent<Image>();
+        _playerScript = FindObjectOfType<PlayerScript>();
+        timer_fear_number = _playerScript._timerFear;
+        max_timer_fear_number = timer_fear_number;
     }
 
-    
-    void Update()
+    public void LifeBar()
     {
-        if(_Player_Script._OnFear == true)
+        if(_playerScript._OnFear == true)
         {
-           // timer -= Time.deltaTime;
-            Start_Life_Bar_Fear();
+            imageController.enabled = true;
         }
 
-   
+        if (_playerScript._OnFear == false)
+        {
+            imageController.enabled = false;
+        }
     }
 
-    public void Start_Life_Bar_Fear()
+    public void Update()
     {
-        gameObject.transform.localScale =  Vector3.Lerp(start,finish, timer/Time.deltaTime );
+        LifeBar();
+        timer_fear_number = _playerScript._timerFear;
+        imageController.fillAmount = timer_fear_number / max_timer_fear_number;
     }
+
 }

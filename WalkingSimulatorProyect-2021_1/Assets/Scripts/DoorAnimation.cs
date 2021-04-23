@@ -5,23 +5,27 @@ using UnityEngine;
 public class DoorAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Animator door;
-   
-
-    // Update is called once per frame
-    void Update()
+    private Animator door;
+   void Start (){
+       door = GetComponent<Animator>();
+   }
+    void OnTriggerEnter (Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (other.tag == "Player")    
+        
         {
-
-        door.SetBool("Open", true);
-    }
-    else{
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            door.SetBool("Open", false);
+            door.SetBool("Open", true);
         }
-    }
+        else 
+        {
+            if (other.tag != "Player" )
+            {
+                door.SetBool("Open", false);
+            }
+        }
 
     }
+    
 }
+
+

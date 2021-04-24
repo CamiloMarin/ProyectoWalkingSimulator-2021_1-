@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerScript : MonoBehaviour
+
 {
+
     public CharacterController controller;
 
     public float speed = 12f; // Velocidad de movimiento del personaje (PLAYER)
@@ -26,23 +29,37 @@ public class PlayerScript : MonoBehaviour
     // script interaction
     public Interaction _interaction_script;
     // gameobj que contiene el script de interaction 
-    public GameObject _interaction_Obj_SpotL;
+    public GameObject _interaction_Obj_SpotL;  
 
-
-    
     static public float bateria = 15f;
 
-   
+    // variables - parametros del patrón observer
+    public int contador_Monstruos_Iluminados = 0;
+    int total_Monstruos_Iluminar = 8;
+
+
+    public void Monster_Flag_Contador(int Monstruos_Contados)
+    {
+               
+        contador_Monstruos_Iluminados += Monstruos_Contados; 
+ 
+    }
+
+
+    public void Victoria()
+    {
+        // 
+    }
+
+
     private void Start()
     {
         _OnFear = false;        
     }
+ 
 
 
-    private void FixedUpdate()
-    {
-        
-    }
+
 
     void Update()
     {
@@ -61,7 +78,8 @@ public class PlayerScript : MonoBehaviour
         {
             _OnFear = false;
             _interaction_script._If_Swap_Is_True = false;
-            _interaction_script._If_Swap_Is_True = false;
+
+            
         }
 
 
@@ -161,9 +179,7 @@ public class PlayerScript : MonoBehaviour
         _OnFear = false;
 
     }
-
-    
-
+   
 
     public void _ZonaDeMiedo()
     {
@@ -177,15 +193,22 @@ public class PlayerScript : MonoBehaviour
 
         if (_timerFear <= 0)
         {
-            //lose 
+            //lose animation
 
-            Debug.Log("YA PERDI XD");
-
-           
+            Debug.Log("YA PERDI XD");   
 
         }
 
     }
 
+    private void OnEnable()
+    {
+        Sujeto_Player.Monster_flagged += Monster_Flag_Contador;
+    }
+
+    private void OnDisable()
+    {
+        Sujeto_Player.Monster_flagged -= Monster_Flag_Contador;
+    }
 
 }

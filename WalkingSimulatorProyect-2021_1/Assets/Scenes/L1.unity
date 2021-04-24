@@ -5675,6 +5675,7 @@ GameObject:
   - component: {fileID: 800871461}
   - component: {fileID: 800871462}
   - component: {fileID: 800871458}
+  - component: {fileID: 800871463}
   - component: {fileID: 800871459}
   - component: {fileID: 800871460}
   m_Layer: 0
@@ -5728,6 +5729,7 @@ MonoBehaviour:
   _OnFear: 0
   _interaction_script: {fileID: 731247136}
   _interaction_Obj_SpotL: {fileID: 731247133}
+  contador_Monstruos_Iluminados: 0
 --- !u!136 &800871460
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5777,6 +5779,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.57, z: 0}
+--- !u!114 &800871463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800871457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5801650a7cfbe843bb53c4a590cd075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interaction_script: {fileID: 731247136}
 --- !u!1001 &823841247
 PrefabInstance:
   m_ObjectHideFlags: 0

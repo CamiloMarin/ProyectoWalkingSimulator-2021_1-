@@ -29,11 +29,13 @@ public class PlayerScript : MonoBehaviour
     public GameObject _interaction_Obj_SpotL;
 
 
-   	static public float bateria = 15f;
+    
+    static public float bateria = 15f;
 
+   
     private void Start()
     {
-        _OnFear = false;
+        _OnFear = false;        
     }
 
 
@@ -65,7 +67,7 @@ public class PlayerScript : MonoBehaviour
 
         if (_OnFear == false)
         {
-            _timerFear = _timerFearReseter;
+            _timerFear = _timerFearReseter;           
         }
 
 
@@ -143,6 +145,8 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag.Equals("colliderMonstruo"))
         {
             _ZonaDeMiedo();
+            
+           
         }
     }
 
@@ -151,6 +155,7 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag.Equals("colliderMonstruo"))
         {
             _timerFear = _timerFearReseter;
+           
         }
 
         _OnFear = false;

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bateria : MonoBehaviour
+public class Bateria : MonoBehaviour{
 
-{
+
+	public GameObject OpenPanel = null;
+    private bool _isInsideTrigger = false;
+
 	private float bateriaRecargada = 28f;
 
 
@@ -12,9 +15,36 @@ public class Bateria : MonoBehaviour
     {
     	if (other.tag == "Player")
     	{
-    		PlayerScript.bateria += bateriaRecargada;
-    		Destroy(gameObject);
+    		_isInsideTrigger = true;
+            OpenPanel.SetActive(true);
     	}
     }
+     void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            _isInsideTrigger = false;
+            OpenPanel.SetActive(false);
+        }
+    }
+    private bool IsOpenPanelActive
+    {
+        get
+        {
+            return OpenPanel.activeInHierarchy;
+        }
+    }
+     void Update () {
+
+        if(IsOpenPanelActive && _isInsideTrigger)
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                OpenPanel.SetActive(false);
+                PlayerScript.bateria += bateriaRecargada;
+    			Destroy(gameObject);  
+            }
+        }
+	}
 
 }

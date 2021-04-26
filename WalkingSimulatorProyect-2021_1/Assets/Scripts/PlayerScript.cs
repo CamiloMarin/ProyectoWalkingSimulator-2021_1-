@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     // gameobj que contiene el script de interaction 
     public GameObject _interaction_Obj_SpotL;  
 
-    static public float bateria = 15f;
+    static public float bateria = 25.0f;
 
     // variables - parametros del patrón observer
     public int contador_Monstruos_Iluminados = 0;

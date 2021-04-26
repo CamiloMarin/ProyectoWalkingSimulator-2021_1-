@@ -193,9 +193,7 @@ public class PlayerScript : MonoBehaviour
 
         if (_timerFear <= 0)
         {
-            //lose animation
-
-            Debug.Log("YA PERDI XD");   
+           FindObjectOfType<GameManager>().EndGame(); 
 
         }
 

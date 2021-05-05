@@ -35,26 +35,27 @@ public class PlayerScript : MonoBehaviour
 
     // variables - parametros del patrón observer
     public int contador_Monstruos_Iluminados = 0;
-    int total_Monstruos_Iluminar = 8;
+    // int total_Monstruos_Iluminar = 8;
 
+    patron_Observer._Observable _observable = new patron_Observer._Observable();
 
-    public void Monster_Flag_Contador(int Monstruos_Contados)
-    {
-               
-        contador_Monstruos_Iluminados += Monstruos_Contados; 
- 
-    }
 
 
     public void Victoria()
     {
-        // 
+        
     }
 
 
     private void Start()
     {
-        _OnFear = false;        
+        _OnFear = false;
+
+        // Instancia los observadores concretos con su respectivas acciones y respuestas al notify()
+        patron_Observer._Observer_concreto Concrete_Observer = new patron_Observer._Observer_concreto(this.gameObject, new patron_Observer._Monster_Count());
+        // Suscribe los observadores al observable
+        _observable.AddObserver(Concrete_Observer);
+
     }
  
 
@@ -74,12 +75,23 @@ public class PlayerScript : MonoBehaviour
         }
         */
 
+
+        // Si un monstruo es iluminado entonces: 
+
         if(_interaction_script._If_Swap_Is_True == true)
         {
             _OnFear = false;
             _interaction_script._If_Swap_Is_True = false;
-
+            _observable.Notify(); // Patrón Observer
+            patron_Observer._Observer_concreto.Total_Monstruos_Contados = contador_Monstruos_Iluminados;
             
+
+        }
+
+        if(contador_Monstruos_Iluminados == 8)
+        {
+            // AQUI OSA SE HACE LA PINCH ANIMACION O LO QUE VAYA A PASAR CUANDO EL JUGADOR TERMINA EL JUEGO 
+            // Victoria();
         }
 
 
@@ -199,6 +211,16 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    // Patron observer
+    /*
+    public void Monster_Flag_Contador(int Monstruos_Contados)
+    {
+
+        contador_Monstruos_Iluminados += Monstruos_Contados;
+
+    }
+
+    
     private void OnEnable()
     {
         Sujeto_Player.Monster_flagged += Monster_Flag_Contador;
@@ -208,5 +230,6 @@ public class PlayerScript : MonoBehaviour
     {
         Sujeto_Player.Monster_flagged -= Monster_Flag_Contador;
     }
+    */
 
 }

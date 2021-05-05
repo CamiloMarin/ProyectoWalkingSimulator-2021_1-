@@ -5,6 +5,7 @@ using System;
 
     public class Sujeto_Player : MonoBehaviour
     {
+    /*
         // Evento cuando se ilumina un monstruo
         public static event Action<int> Monster_flagged;
         public Interaction _interaction_script;
@@ -34,7 +35,7 @@ using System;
     {
         SiHayUnaInteraccion();
     }
+    */
 
 }
-
 

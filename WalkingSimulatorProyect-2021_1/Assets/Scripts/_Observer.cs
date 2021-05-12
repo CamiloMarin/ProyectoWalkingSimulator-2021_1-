@@ -11,7 +11,9 @@ namespace patron_Observer
 
     public class _Observer_concreto : _Observer
     {
-        public static float Total_Monstruos_Contados;
+        public static float Total_Monstruos_Contados_Checkeados;
+        public static float Monstruo_Checkeado = 1.0f;
+
 
         // Este es el clase-objeto que va a reaccionar al notify
 
@@ -30,9 +32,13 @@ namespace patron_Observer
 
         void Notify_Monstruos_Contados(float Monstruos_Contados)
         {
-
-            Total_Monstruos_Contados = Total_Monstruos_Contados + Monstruos_Contados;
-            Debug.Log(Total_Monstruos_Contados);
+            if(Monstruo_Checkeado == Monstruos_Contados)
+            {
+                Total_Monstruos_Contados_Checkeados += 1.0f;
+            }
+            
+           
+           
 
         }
 
@@ -42,6 +48,7 @@ namespace patron_Observer
             Notify_Monstruos_Contados(Contando_Monstruos.MonstruosContados());
 
         }
+
     }
 
 }

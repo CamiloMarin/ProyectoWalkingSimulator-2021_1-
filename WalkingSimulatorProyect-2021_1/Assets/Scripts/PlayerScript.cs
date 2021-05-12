@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using patron_Observer;
 using UnityEngine;
-using System;
 
 public class PlayerScript : MonoBehaviour
 
@@ -34,16 +32,21 @@ public class PlayerScript : MonoBehaviour
     static public float bateria = 25.0f;
 
     // variables - parametros del patrón observer
-    public int contador_Monstruos_Iluminados = 0;
+    public float contador_Monstruos_Iluminados;
     // int total_Monstruos_Iluminar = 8;
 
     patron_Observer._Observable _observable = new patron_Observer._Observable();
 
 
-
+    // AQUI OSA SE HACE LA PINCH ANIMACION O LO QUE VAYA A PASAR CUANDO EL JUGADOR TERMINA EL JUEGO 
     public void Victoria()
     {
-        
+        Debug.Log("Si gane!!");
+    }
+    // AQUI SE HACE LO QUE VAYA A PASAR SI EL JUGADOR PIERDE!
+    public void Derrota()
+    {
+        Debug.Log("NOOO");
     }
 
 
@@ -65,16 +68,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
-        /* if (_interaction_Obj_SpotL.activeSelf)
-        {
-            if(_interaction_script.Obj3_Monster_Collider == null)
-            {
-                _timerFear = _timerFearReseter;
-            }
-            else _timerFear = _timerFearReseter;
-        }
-        */
-
+        
 
         // Si un monstruo es iluminado entonces: 
 
@@ -83,16 +77,17 @@ public class PlayerScript : MonoBehaviour
             _OnFear = false;
             _interaction_script._If_Swap_Is_True = false;
             _observable.Notify(); // Patrón Observer
-            patron_Observer._Observer_concreto.Total_Monstruos_Contados = contador_Monstruos_Iluminados;
-            
+            contador_Monstruos_Iluminados =_Observer_concreto.Total_Monstruos_Contados_Checkeados;
+            Debug.Log(_Observer_concreto.Total_Monstruos_Contados_Checkeados);
 
         }
 
-        if(contador_Monstruos_Iluminados == 8)
+       /* if(contador_Monstruos_Iluminados == 8)
         {
-            // AQUI OSA SE HACE LA PINCH ANIMACION O LO QUE VAYA A PASAR CUANDO EL JUGADOR TERMINA EL JUEGO 
+            
             // Victoria();
         }
+        */
 
 
         if (_OnFear == false)
@@ -174,8 +169,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("colliderMonstruo"))
         {
-            _ZonaDeMiedo();
-            
+            _ZonaDeMiedo();   
            
         }
     }
@@ -203,33 +197,10 @@ public class PlayerScript : MonoBehaviour
 
         }
 
-        if (_timerFear <= 0)
-        {
-           FindObjectOfType<GameManager>().EndGame(); 
-
-        }
-
-    }
-
-    // Patron observer
-    /*
-    public void Monster_Flag_Contador(int Monstruos_Contados)
-    {
-
-        contador_Monstruos_Iluminados += Monstruos_Contados;
+        
 
     }
 
     
-    private void OnEnable()
-    {
-        Sujeto_Player.Monster_flagged += Monster_Flag_Contador;
-    }
-
-    private void OnDisable()
-    {
-        Sujeto_Player.Monster_flagged -= Monster_Flag_Contador;
-    }
-    */
 
 }

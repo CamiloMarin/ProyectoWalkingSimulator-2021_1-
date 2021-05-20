@@ -37,10 +37,13 @@ public class PlayerScript : MonoBehaviour
 
     patron_Observer._Observable _observable = new patron_Observer._Observable();
 
-
+    public Animator mainDoor;
+    public GameObject Win;
     // AQUI OSA SE HACE LA PINCH ANIMACION O LO QUE VAYA A PASAR CUANDO EL JUGADOR TERMINA EL JUEGO 
     public void Victoria()
     {
+        mainDoor.SetBool("Open", true);
+        Win.SetActive(true);
         Debug.Log("Si gane!!");
     }
     // AQUI SE HACE LO QUE VAYA A PASAR SI EL JUGADOR PIERDE!
@@ -59,6 +62,7 @@ public class PlayerScript : MonoBehaviour
         // Suscribe los observadores al observable
         _observable.AddObserver(Concrete_Observer);
 
+        Win.SetActive(false);
     }
  
 

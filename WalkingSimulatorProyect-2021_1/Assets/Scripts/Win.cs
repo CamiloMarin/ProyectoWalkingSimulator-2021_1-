@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
 
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Win");
         }
 
     }

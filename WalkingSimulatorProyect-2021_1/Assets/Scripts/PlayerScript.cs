@@ -39,11 +39,14 @@ public class PlayerScript : MonoBehaviour
 
     public Animator mainDoor;
     public GameObject Win;
+    public AudioSource winSound;
     // AQUI OSA SE HACE LA PINCH ANIMACION O LO QUE VAYA A PASAR CUANDO EL JUGADOR TERMINA EL JUEGO 
     public void Victoria()
     {
         mainDoor.SetBool("Open", true);
+        winSound.Play();
         Win.SetActive(true);
+        
         Debug.Log("Si gane!!");
     }
     // AQUI SE HACE LO QUE VAYA A PASAR SI EL JUGADOR PIERDE!

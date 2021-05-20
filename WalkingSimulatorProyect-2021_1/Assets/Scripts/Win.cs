@@ -13,6 +13,7 @@ public class Win : MonoBehaviour
 
         {
             SceneManager.LoadScene("Win");
+            Cursor.lockState = CursorLockMode.None;
         }
 
     }

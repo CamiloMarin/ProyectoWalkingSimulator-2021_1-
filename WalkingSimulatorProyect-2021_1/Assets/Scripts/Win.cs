@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
+    
+
+   
 
     // Start is called before the first frame update
     void OnTriggerEnter(Collider other)
@@ -12,6 +15,8 @@ public class Win : MonoBehaviour
         if (other.tag == "Player")
 
         {
+
+           
             SceneManager.LoadScene("Win");
             Cursor.lockState = CursorLockMode.None;
         }

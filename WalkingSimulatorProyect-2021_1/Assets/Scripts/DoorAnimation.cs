@@ -6,6 +6,8 @@ public class DoorAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
     private Animator door;
+    public AudioSource doorSound; 
+
    void Start (){
        door = GetComponent<Animator>();
    }
@@ -15,6 +17,7 @@ public class DoorAnimation : MonoBehaviour
         
         {
             door.SetBool("Open", true);
+            doorSound.Play();
         }
         else 
         {
